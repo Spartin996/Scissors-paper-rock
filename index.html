@@ -6,7 +6,7 @@
   <body>
     <script>
 //       Get a username
-      //let username = prompt("What is your username?");
+      let username = prompt("What is your username?");
 
 
 //        set a round counter
@@ -37,6 +37,22 @@
       }
 
 
+      //A validate user entry function  
+      function validateUserEntry(string) {
+        switch (string) {
+          case "scissors":
+          case "paper":
+          case "rock":
+            return true;
+            break;
+          default:
+            alert("WRONG ENTRY");
+            return false;
+            
+        }
+      }
+
+
 //   Have the user enter a choice
       function getUserChoice() {
         //     Prompt for entry
@@ -46,16 +62,14 @@
         userEntry = userEntry.trim();
         //      get rid of capitals in random spots
         userEntry = userEntry.toLowerCase();
-        
-        //       check that is one of the 3 correct choices
-        if (userEntry != "scissors" || userEntry != "paper" || userEntry != "rock") {
-          alert("WRONG ENTRY");
-        }
-
         return userEntry;
       }
 
-      let userChoice = getUserChoice();
+      let userChoice ="";
+      do { 
+        userChoice = getUserChoice();
+      } while (validateUserEntry(userChoice) === false)
+      
       console.log(userChoice);
 //      Compare user choice against computer choice
 //     if same call a draw, restart
