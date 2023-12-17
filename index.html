@@ -4,16 +4,13 @@
     <title>Scissors Paper Rock</title>
   </head>
   <body>
+    <h1>
+      Scissors Paper Rock
+    </h1>
+    <p>From this page you can play Scissors Paper Rock against a computer.</p>
+    <p>For details on the rules ask a 3 year old</p>
+
     <script>
-//       Get a username
-      let username = prompt("What is your username?");
-
-
-//        set a round counter
-      let userScore = 0;
-      let comScore = 0;
-
-
 //        generate a computer choice
       function getComChoice() {
         //        Generate a random value between 1 and 3
@@ -28,7 +25,7 @@
             comChoice = "paper";
             break;
           case 3:
-            comChoice = "Rock"
+            comChoice = "rock"
             break;
           default:
             console.log("Function getComChoice is broken.");
@@ -53,7 +50,7 @@
       }
 
 
-//   Have the user enter a choice
+//   function to Have the user enter a choice
       function getUserChoice() {
         //     Prompt for entry
         let userEntry = prompt("Please enter your choice as Scissors, Paper or Rock?")
@@ -65,46 +62,76 @@
         return userEntry;
       }
 
-      let userChoice ="";
-      do { 
-        userChoice = getUserChoice();
-      } while (validateUserEntry(userChoice) === false)
-      
-      console.log(userChoice);
-//      Compare user choice against computer choice
+      function whoWins(userChoice, comChoice) {
+        //      Compare user choice against computer choice
 //     if same call a draw, restart
-    
+        if (userChoice === comChoice) {
+          return "draw";
+        }
+        
 //     if user scissors and computer paper
-//       user win
-//     if user scissors and computer rock
-//       computer win
-//     if user paper and computer scissors
-//       computer win
-//     if user paper and computer rock
-//       user win
-//     if user rock and computer paper
-//       computer win
-//     if user rock and computer scissors
-//       user win
-      function whoWins() {
-
+        if (userChoice === "scissors" && comChoice === "paper") {
+          return "user win";
+        } else if (userChoice === "scissors" && comChoice === "rock") {
+          return "computer win";
+        } else if (userChoice === "paper" && comChoice === "scissors") {
+          return "computer win";
+        } else if (userChoice === "paper" && comChoice === "rock") {
+          return "user win";
+        } else if (userChoice === "rock" && comChoice === "paper") {
+          return "computer win";
+        } else if (userChoice === "rock" && comChoice === "scissors") {
+          return "user win";
+        } else {
+          console.log("Error in whoWins function");
+          return "draw";
+        }
       }
 
-//        While both computer and user wins are <= 3
 
-//        Call getComChoice
 
-//        Call getUserChoice
 
-//        Call whoWins
+//       Get a username
+      let username = prompt("What is your username?");
+//        set a start score
+      let userScore = 0;
+      let comScore = 0;
+      //set a user choice
+      
+      //play a game first to 3
+      while (userScore != 3 && comScore != 3) {
+        let userChoice ="";
+        do { 
+        userChoice = getUserChoice();
+        } while (validateUserEntry(userChoice) === false)
+        //set a com choice
+        let comChoice = getComChoice();
+        
+        let roundWinner = whoWins(userChoice, comChoice);
+        alert(username + " chose " + userChoice +"\nThe computer chose " + comChoice)
+        console.log("user chose " + userChoice);
+        console.log("computer chose " + comChoice);
+        if (roundWinner === "user win") {
+          alert(username + " has won a round");
+          userScore++;
+          alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
+          
+        } else if (roundWinner === "computer win"){
+          alert("The computer has won a round");
+          comScore++
+          alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
+        } else {
+          alert("Looks like a draw\nTry again");
+        }
+      }
 
-    
-//   Winner gets displayed on the screen
-//   winner gets ++ win score
-
-//   display current rounds score
-
-// When the loop breaks
+  
+    if (comScore < userScore) {
+      alert("THE WINNER WAS THE COMPUTER");
+    } else {
+      alert(username + " HAS WON!!1")
+    }
+    alert("The final score was:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
 //   Check if user or computer is >
 //   display winner
 
@@ -114,11 +141,7 @@
 
     </script>
 
-    <h1>
-      Scissors Paper Rock
-    </h1>
-    <p>From this page you can play Scissors Paper Rock against a computer in the console.</p>
-    <p>For details on the rules ask a 3 year old, or a Rubber Duck!!</p>
+    
 
   </body>
 </html>
