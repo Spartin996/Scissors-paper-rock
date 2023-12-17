@@ -11,11 +11,11 @@
     <p>For details on the rules ask a 5 year old.</p>
 
     <script>
-//        generate a computer choice
+      //Function to generate a computer choice
       function getComputerChoice() {
-        //        Generate a random value between 1 and 3
+        //Generate a random value between 1 and 3
         let randomNumber = Math.floor(Math.random() * (4-1)) + 1;
-        //        assign this to scissors, Paper or Rock
+        //assign this to scissors, Paper or Rock
         let comChoice = "";
         switch (randomNumber) {
           case 1:
@@ -34,7 +34,7 @@
       }
 
 
-      //A validate user entry function  
+      //A validate user entry function to make sure the user can spell  
       function validateUserEntry(string) {
         switch (string) {
           case "scissors":
@@ -50,26 +50,26 @@
       }
 
 
-//   function to Have the user enter a choice
+      //function to Have the user enter a choice
       function getUserChoice() {
-        //     Prompt for entry
+        //Prompt for entry
         let userEntry = prompt("Please enter your choice as Scissors, Paper or Rock?")
-        //     validate this choice
-        //       Trim it
+        //validate this choice
+        //Trim it
         userEntry = userEntry.trim();
-        //      get rid of capitals in random spots
+        //get rid of capitals in random spots
         userEntry = userEntry.toLowerCase();
         return userEntry;
       }
 
       function whoWins(userChoice, comChoice) {
-        //      Compare user choice against computer choice
-//     if same call a draw, restart
+        //Compare user choice against computer choice
+        //if same call a draw
         if (userChoice === comChoice) {
           return "draw";
         }
         
-//     if user scissors and computer paper
+        //Matrix of If's to find the winner.
         if (userChoice === "scissors" && comChoice === "paper") {
           return "user win";
         } else if (userChoice === "scissors" && comChoice === "rock") {
@@ -83,17 +83,19 @@
         } else if (userChoice === "rock" && comChoice === "scissors") {
           return "user win";
         } else {
+          //console log if I forgot something
           console.log("Error in whoWins function");
           return "draw";
         }
       }
 
+      //this plays a single round and returns the winner 
       function playARound(){
         let userChoice ="";
         do { 
         userChoice = getUserChoice();
         } while (validateUserEntry(userChoice) === false)
-        //set a com choice
+        //set a computer choice
         let comChoice = getComputerChoice();
         //decide who won a round
         let localRoundWinner = whoWins(userChoice, comChoice);
@@ -121,9 +123,9 @@
 
 
       //setup a game
-      //Get a username
+      //get a username
       var username = prompt("What is your username?");
-        //set a start score
+      //set a start score
       var userScore = 0;
       var  comScore = 0;
       
