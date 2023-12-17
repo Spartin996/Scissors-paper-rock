@@ -8,11 +8,11 @@
       Scissors Paper Rock
     </h1>
     <p>From this page you can play Scissors Paper Rock against a computer.</p>
-    <p>For details on the rules ask a 3 year old</p>
+    <p>For details on the rules ask a 5 year old.</p>
 
     <script>
 //        generate a computer choice
-      function getComChoice() {
+      function getComputerChoice() {
         //        Generate a random value between 1 and 3
         let randomNumber = Math.floor(Math.random() * (4-1)) + 1;
         //        assign this to scissors, Paper or Rock
@@ -28,7 +28,7 @@
             comChoice = "rock"
             break;
           default:
-            console.log("Function getComChoice is broken.");
+            console.log("Function getComputerChoice is broken.");
         }
         return comChoice;
       }
@@ -88,29 +88,22 @@
         }
       }
 
-
-
-
-//       Get a username
-      let username = prompt("What is your username?");
-//        set a start score
-      let userScore = 0;
-      let comScore = 0;
-      //set a user choice
-      
-      //play a game first to 3
-      while (userScore != 3 && comScore != 3) {
+      function playARound(){
         let userChoice ="";
         do { 
         userChoice = getUserChoice();
         } while (validateUserEntry(userChoice) === false)
         //set a com choice
-        let comChoice = getComChoice();
+        let comChoice = getComputerChoice();
+        //decide who won a round
+        let localRoundWinner = whoWins(userChoice, comChoice);
+        return localRoundWinner;
+      }
+
+      function game(firstToo) {
+        while (userScore != firstToo && comScore != firstToo) {
         
-        let roundWinner = whoWins(userChoice, comChoice);
-        alert(username + " chose " + userChoice +"\nThe computer chose " + comChoice)
-        console.log("user chose " + userChoice);
-        console.log("computer chose " + comChoice);
+        let roundWinner = playARound();
         if (roundWinner === "user win") {
           alert(username + " has won a round");
           userScore++;
@@ -124,16 +117,26 @@
           alert("Looks like a draw\nTry again");
         }
       }
+      }
 
-  
-    if (comScore < userScore) {
+
+      //setup a game
+      //Get a username
+      var username = prompt("What is your username?");
+        //set a start score
+      var userScore = 0;
+      var  comScore = 0;
+      
+      //play a game first to 3
+      game(3);
+
+      //decide who won
+    if (comScore > userScore) {
       alert("THE WINNER WAS THE COMPUTER");
     } else {
-      alert(username + " HAS WON!!1")
+      alert(username + " HAS WON!!!")
     }
     alert("The final score was:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
-//   Check if user or computer is >
-//   display winner
 
 
 
