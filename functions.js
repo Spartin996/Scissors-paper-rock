@@ -40,6 +40,19 @@ function getComputerChoice() {
   return comChoice;
 }
 
+//decide who won total game
+function checkRounds(rounds) {
+  if (rounds == numberRounds){
+    if (comScore > userScore) {
+  alert("THE WINNER WAS THE COMPUTER");
+    } else {
+  alert(username + " HAS WON!!!")
+    }
+    //alert("The final score was:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
+  }
+}
+
+
 
 /* //A validate user entry function to make sure the user can spell  
 function validateUserEntry(string) {
@@ -68,8 +81,16 @@ function getUserChoice() {
   return userEntry;
 }
  */
+
+//function to check who the winner is
 function whoWins(userChoice, comChoice) {
+  //display choices 
+    imgComChoice.setAttribute("src", "images/com-"+comChoice+".png");
+    console.log(imgComChoice);
+    imgUserChoice.setAttribute("src", "images/user-"+userChoice+".png");
   //Compare user choice against computer choice
+
+
   //if same call a draw
   if (userChoice === comChoice) {
     return "draw";
@@ -93,6 +114,8 @@ function whoWins(userChoice, comChoice) {
     console.log("Error in whoWins function");
     return "draw";
   }
+
+
 }
 
 //this plays a single round and returns the winner 
@@ -100,29 +123,29 @@ function playARound(userChoice){
   //set a computer choice
   let comChoice = getComputerChoice();
   //decide who won a round
-  let localRoundWinner = whoWins(userChoice, comChoice);
-  console.log(localRoundWinner);
-  return localRoundWinner;
+  let roundWinner = whoWins(userChoice, comChoice);
+
+  if (roundWinner === "user win") {
+    //alert(username + " has won a round");
+    userScore++;
+    rounds++;
+    //alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
+  } else if (roundWinner === "computer win"){
+    //alert("The computer has won a round");
+    comScore++;
+    rounds++;
+    //alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
+  } else {
+    //alert("Looks like a draw\nTry again");
+    draws++;
+  }
+
+  playerScore.textContent = userScore;
+  computerScore.textContent = comScore;
+
+  checkRounds(rounds)
 }
 
-function game(firstToo) {
-  while (userScore != firstToo && comScore != firstToo) {
-  
-  let roundWinner = playARound();
-  if (roundWinner === "user win") {
-    alert(username + " has won a round");
-    userScore++;
-    alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
-    
-  } else if (roundWinner === "computer win"){
-    alert("The computer has won a round");
-    comScore++
-    alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
-  } else {
-    alert("Looks like a draw\nTry again");
-  }
-}
-}
 
 
 //setup a game
@@ -131,6 +154,9 @@ var username = setUsername();
 //set a start score
 var userScore = 0;
 var  comScore = 0;
+var draws = 0;
+var rounds = 0;
+let numberRounds = 5;
 
 let userScissors = document.querySelector("#scissors");
 userScissors.addEventListener('click', () => playARound("scissors"));
@@ -141,18 +167,17 @@ userPaper.addEventListener('click', () => playARound("paper"));
 let userRock = document.querySelector("#rock");
 userRock.addEventListener('click', () => playARound("rock"));
 
+
+let playerScore = document.querySelector("#playerScore");
+let computerScore = document.querySelector("#comScore");
+
+let imgUserChoice = document.querySelector("img#userChoice");
+let imgComChoice = document.querySelector("img#comChoice");
+
 //console.log(playARound());
 
 //play a game first to 3
 //game(3);
-
-//decide who won
-if (comScore > userScore) {
-alert("THE WINNER WAS THE COMPUTER");
-} else {
-alert(username + " HAS WON!!!")
-}
-alert("The final score was:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
 
 
 
