@@ -2,150 +2,66 @@
 <html>
   <head>
     <title>Scissors Paper Rock</title>
+    <!-- <script src="functions.js" defer></script> -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>
-      Scissors Paper Rock
-    </h1>
-    <p>From this page you can play Scissors Paper Rock against a computer.</p>
-    <p>For details on the rules ask a 5 year old.</p>
+    <div id="header">
+      <h1>
+        Scissors Paper Rock
+      </h1>
+      <p>From this page you can play Scissors Paper Rock against a computer.</p>
+      <p>For details on the rules ask a 5 year old.</p>
+    </div>
+    <div id="game">
+      <div id="userChoice">
+        <h3>User Choice</h3>
+        <div>
+          <img id="userChoice" src="images/scissors.png">
+        </div>
+      </div>
+      <div>
+        <h4>Current score</h4>
+          <div id="roundScore">
+            <div id="playerName">
+              PLAYER
+              <div id="playerScore">
+                SCORE HERE
+              </div>
+            </div>
+            <div>
+              Computer
+              <div id="comScore">
+                SCORE HERE
+              </div>
+            </div>
 
-    <script>
-      //Function to generate a computer choice
-      function getComputerChoice() {
-        //Generate a random value between 1 and 3
-        let randomNumber = Math.floor(Math.random() * (4-1)) + 1;
-        //assign this to scissors, Paper or Rock
-        let comChoice = "";
-        switch (randomNumber) {
-          case 1:
-            comChoice = "scissors";
-            break;
-          case 2:
-            comChoice = "paper";
-            break;
-          case 3:
-            comChoice = "rock"
-            break;
-          default:
-            console.log("Function getComputerChoice is broken.");
-        }
-        return comChoice;
-      }
+          </div>
+      </div>
+      <div id="comChoice">
+        <h3>Computer Choice</h3>
+        <div>
+          <img id="comChoice" src="images/paper.png">
+        </div>
+      </div>
+    </div>
 
+    <div id="choose">
+      <div class="buttonWrapper">
+        <img src="images/scissors.png" class="button">
+      </div>
+      <div class="buttonWrapper">
+        <img src="images/paper.png" class="button">
+      </div>
+      <div class="buttonWrapper">
+        <img src="images/rock.png" class="button">
+      </div>
+    </div>
 
-      //A validate user entry function to make sure the user can spell  
-      function validateUserEntry(string) {
-        switch (string) {
-          case "scissors":
-          case "paper":
-          case "rock":
-            return true;
-            break;
-          default:
-            alert("WRONG ENTRY");
-            return false;
-            
-        }
-      }
-
-
-      //function to Have the user enter a choice
-      function getUserChoice() {
-        //Prompt for entry
-        let userEntry = prompt("Please enter your choice as Scissors, Paper or Rock?")
-        //validate this choice
-        //Trim it
-        userEntry = userEntry.trim();
-        //get rid of capitals in random spots
-        userEntry = userEntry.toLowerCase();
-        return userEntry;
-      }
-
-      function whoWins(userChoice, comChoice) {
-        //Compare user choice against computer choice
-        //if same call a draw
-        if (userChoice === comChoice) {
-          return "draw";
-        }
-        
-        //Matrix of If's to find the winner.
-        if (userChoice === "scissors" && comChoice === "paper") {
-          return "user win";
-        } else if (userChoice === "scissors" && comChoice === "rock") {
-          return "computer win";
-        } else if (userChoice === "paper" && comChoice === "scissors") {
-          return "computer win";
-        } else if (userChoice === "paper" && comChoice === "rock") {
-          return "user win";
-        } else if (userChoice === "rock" && comChoice === "paper") {
-          return "computer win";
-        } else if (userChoice === "rock" && comChoice === "scissors") {
-          return "user win";
-        } else {
-          //console log if I forgot something
-          console.log("Error in whoWins function");
-          return "draw";
-        }
-      }
-
-      //this plays a single round and returns the winner 
-      function playARound(){
-        let userChoice ="";
-        do { 
-        userChoice = getUserChoice();
-        } while (validateUserEntry(userChoice) === false)
-        //set a computer choice
-        let comChoice = getComputerChoice();
-        //decide who won a round
-        let localRoundWinner = whoWins(userChoice, comChoice);
-        return localRoundWinner;
-      }
-
-      function game(firstToo) {
-        while (userScore != firstToo && comScore != firstToo) {
-        
-        let roundWinner = playARound();
-        if (roundWinner === "user win") {
-          alert(username + " has won a round");
-          userScore++;
-          alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
-          
-        } else if (roundWinner === "computer win"){
-          alert("The computer has won a round");
-          comScore++
-          alert("Current score is:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
-        } else {
-          alert("Looks like a draw\nTry again");
-        }
-      }
-      }
-
-
-      //setup a game
-      //get a username
-      var username = prompt("What is your username?");
-      //set a start score
-      var userScore = 0;
-      var  comScore = 0;
-      
-      //play a game first to 3
-      game(3);
-
-      //decide who won
-    if (comScore > userScore) {
-      alert("THE WINNER WAS THE COMPUTER");
-    } else {
-      alert(username + " HAS WON!!!")
-    }
-    alert("The final score was:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
-
-
-
-
-
-    </script>
-
-
+    <footer>
+      Copyright Martin @spartin996 Github<br />
+      Designed and developed as part of The Odin Project <br />
+      Images sourced from vecteezy.com <a href="https://www.vecteezy.com/vector-art/3027818-rock-paper-scissors-hand-gesture">Check Them Out</a>
+    </footer>
   </body>
 </html>

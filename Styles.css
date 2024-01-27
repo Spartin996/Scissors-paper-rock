@@ -1,0 +1,85 @@
+/* Styles.css
+General styles for Scissors paper Rock */
+
+* {
+  font-family: ;
+}
+html {
+  height:100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  background-color: #78e1e1;
+}
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  display: block;
+  background-color: #8b73ed;
+  padding: 20px;
+  border-radius: 15px;
+  border: 3px solid #31007a;
+}
+
+
+#game {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+div#userChoice, div#comChoice{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+img#comChoice, img#userChoice {
+  height: 300px;
+  width: 300px;
+}
+
+#roundScore {
+  display: flex;
+  justify-content: space-around;
+}
+
+#roundScore div {
+  padding: 10px;
+}
+
+#choose {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.buttonWrapper {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #3deaea;
+  border: 2px solid #31007a;
+}
+
+.buttonWrapper:hover {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #74e26d;
+  box-shadow: 5px 5px 5px #3deaea;
+}
+
+.button {
+  height: 100px;
+  width: 100px;
+}
