@@ -41,7 +41,7 @@ function getComputerChoice() {
 }
 
 
-//A validate user entry function to make sure the user can spell  
+/* //A validate user entry function to make sure the user can spell  
 function validateUserEntry(string) {
   switch (string) {
     case "scissors":
@@ -67,7 +67,7 @@ function getUserChoice() {
   userEntry = userEntry.toLowerCase();
   return userEntry;
 }
-
+ */
 function whoWins(userChoice, comChoice) {
   //Compare user choice against computer choice
   //if same call a draw
@@ -96,15 +96,12 @@ function whoWins(userChoice, comChoice) {
 }
 
 //this plays a single round and returns the winner 
-function playARound(){
-  let userChoice ="";
-  do { 
-  userChoice = getUserChoice();
-  } while (validateUserEntry(userChoice) === false)
+function playARound(userChoice){
   //set a computer choice
   let comChoice = getComputerChoice();
   //decide who won a round
   let localRoundWinner = whoWins(userChoice, comChoice);
+  console.log(localRoundWinner);
   return localRoundWinner;
 }
 
@@ -135,7 +132,16 @@ var username = setUsername();
 var userScore = 0;
 var  comScore = 0;
 
-console.log(playARound());
+let userScissors = document.querySelector("#scissors");
+userScissors.addEventListener('click', () => playARound("scissors"));
+
+let userPaper = document.querySelector("#paper");
+userPaper.addEventListener('click', () => playARound("paper"));
+
+let userRock = document.querySelector("#rock");
+userRock.addEventListener('click', () => playARound("rock"));
+
+//console.log(playARound());
 
 //play a game first to 3
 //game(3);
