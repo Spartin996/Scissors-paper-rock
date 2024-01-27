@@ -4,6 +4,20 @@
  */
 
 
+//Function to set username
+function setUsername() {
+  let localuser = prompt("What is your username?");
+
+  //dom changes
+  let scoreName = document.querySelector("span#playerName");
+  let choiceName = document.querySelector("div#userChoice h3");
+  scoreName.textContent = localuser;
+  choiceName.textContent = localuser + " Choice";
+
+  return localuser;
+
+}
+
 //Function to generate a computer choice
 function getComputerChoice() {
   //Generate a random value between 1 and 3
@@ -38,7 +52,6 @@ function validateUserEntry(string) {
     default:
       alert("WRONG ENTRY");
       return false;
-      
   }
 }
 
@@ -117,13 +130,15 @@ function game(firstToo) {
 
 //setup a game
 //get a username
-var username = prompt("What is your username?");
+var username = setUsername();
 //set a start score
 var userScore = 0;
 var  comScore = 0;
 
+console.log(playARound());
+
 //play a game first to 3
-game(3);
+//game(3);
 
 //decide who won
 if (comScore > userScore) {
