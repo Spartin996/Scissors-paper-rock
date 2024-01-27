@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Scissors Paper Rock</title>
-    <script src="functions.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -13,39 +12,42 @@
       <p>From this page you can play Scissors Paper Rock against a computer.</p>
       <p>For details on the rules ask a 5 year old.</p>
     </div>
-    <div id="game">
+    <div id="game" class="game">
       <div id="userChoice">
+        <div><h2><span id="playerName">PLAYER</span> Current Score <Span id="playerScore">0</span></h2>
+        </div>
+        
         <h3>User Choice</h3>
         <div>
-          <img id="userChoice" src="images/scissors.png">
+          <img id="userChoice" src="images/all.png" class="draw">
         </div>
       </div>
-      <div>
-        <h4>Current score</h4>
-          <div id="roundScore">
-            <div id="playerName">
-              <span id="playerName">PLAYER</span>
-              <div id="playerScore">
-                SCORE HERE
-              </div>
-            </div>
-            <div>
-              Computer
-              <div id="comScore">
-                SCORE HERE
-              </div>
-            </div>
-
-          </div>
+      <div id="roundsCounter">
+        <h4>Current Number of Rounds</h4>
+        <h4 id="rounds">0 of 5</h4>
       </div>
       <div id="comChoice">
+          <div><h2><span>Computer's</span> Current Score <Span id="comScore">0</span></h2>
+          </div>
         <h3>Computer Choice</h3>
         <div>
-          <img id="comChoice" src="images/rock_paper_scissors-10.eps">
+          <img id="comChoice" src="images/all.png" class="draw">
         </div>
       </div>
     </div>
 
+
+    <div id="startGame">
+      <div>
+        <label for="name">Enter Username</label>
+        <input type="text" id="name">
+      </div>
+      <div>
+        <label for="enterRounds">Enter Number of Rounds</label>
+        <input type="number" id="enterRounds" min="1" max="10">
+      </div>
+      <div id="begin"><h2>Begin Game</h2></div>
+    </div>
     <div id="choose">
       <div class="buttonWrapper" id="scissors">
         <img src="images/user-scissors.png" class="button">
@@ -63,5 +65,7 @@
       Designed and developed as part of The Odin Project <br />
       Images sourced from vecteezy.com <a href="https://www.vecteezy.com/vector-art/3027818-rock-paper-scissors-hand-gesture">Check Them Out</a>
     </footer>
+
+    <script src="functions.js"></script>
   </body>
 </html>

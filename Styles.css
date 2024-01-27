@@ -32,7 +32,7 @@ h1 {
 }
 
 
-#game {
+.game {
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -48,6 +48,9 @@ div#userChoice, div#comChoice{
 img#comChoice, img#userChoice {
   height: 300px;
   width: 300px;
+  padding: 10px;
+  background-color: #8b73ed;
+  border-radius: 10px;
 }
 
 #roundScore {
@@ -60,7 +63,7 @@ img#comChoice, img#userChoice {
 }
 
 #choose {
-  display: flex;
+  display: none;
   justify-content: space-around;
   width: 80%;
 }
@@ -84,4 +87,34 @@ img#comChoice, img#userChoice {
 .button {
   height: 100px;
   width: 100px;
+}
+
+#startGame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#startGame div {
+  padding: 10px;
+}
+
+#roundsCounter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.draw {
+  background-color: #f6c66c !important;
+}
+
+.winner {
+  background-color: #74e26d !important;
+}
+
+.loser {
+  background-color: #f17171 !important;
 }

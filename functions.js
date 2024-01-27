@@ -6,13 +6,14 @@
 
 //Function to set username
 function setUsername() {
-  let localuser = prompt("What is your username?");
+  enterName = document.querySelector("#name");
+  let localuser = enterName.value;
 
   //dom changes
   let scoreName = document.querySelector("span#playerName");
   let choiceName = document.querySelector("div#userChoice h3");
-  scoreName.textContent = localuser;
-  choiceName.textContent = localuser + " Choice";
+  scoreName.textContent = localuser  + "'s";
+  choiceName.textContent = localuser + "'s Choice";
 
   return localuser;
 
@@ -42,13 +43,27 @@ function getComputerChoice() {
 
 //decide who won total game
 function checkRounds(rounds) {
+  let winner = document.createElement("div");
+  let winnerHeading = document.createElement("h1");
+  let finalScore = document.createElement("p");
+
   if (rounds == numberRounds){
     if (comScore > userScore) {
-  alert("THE WINNER WAS THE COMPUTER");
+      winnerHeading.textContent = "You Lost!";
+
+      //alert("THE WINNER WAS THE COMPUTER");
     } else {
-  alert(username + " HAS WON!!!")
+      winnerHeading.textContent = "You Won!";
+      //alert(username + " HAS WON!!!")
     }
+      finalScore.textContent = "The final score was: " + username + " has " + userScore + " points. The computer has " + comScore + " points."
     //alert("The final score was:\n" + username + " has " + userScore + " points.\nThe computer has " + comScore + " points.");
+    winner.appendChild(winnerHeading);
+    winner.appendChild(finalScore);
+    let gameDiv = document.querySelector("#game");
+    gameDiv.replaceChildren(winner);
+  
+    return "Game Over";
   }
 }
 
@@ -86,32 +101,47 @@ function getUserChoice() {
 function whoWins(userChoice, comChoice) {
   //display choices 
     imgComChoice.setAttribute("src", "images/com-"+comChoice+".png");
-    console.log(imgComChoice);
     imgUserChoice.setAttribute("src", "images/user-"+userChoice+".png");
-  //Compare user choice against computer choice
-
-
+  
+  
+    //Compare user choice against computer choice
   //if same call a draw
   if (userChoice === comChoice) {
+    imgComChoice.setAttribute("class", "draw");
+    imgUserChoice.setAttribute("class", "draw");
     return "draw";
   }
   
   //Matrix of If's to find the winner.
   if (userChoice === "scissors" && comChoice === "paper") {
+    imgComChoice.setAttribute("class", "loser");
+    imgUserChoice.setAttribute("class", "winner");
     return "user win";
   } else if (userChoice === "scissors" && comChoice === "rock") {
+    imgComChoice.setAttribute("class", "winner");
+    imgUserChoice.setAttribute("class", "loser");
     return "computer win";
   } else if (userChoice === "paper" && comChoice === "scissors") {
+    imgComChoice.setAttribute("class", "winner");
+    imgUserChoice.setAttribute("class", "loser");
     return "computer win";
   } else if (userChoice === "paper" && comChoice === "rock") {
+    imgComChoice.setAttribute("class", "loser");
+    imgUserChoice.setAttribute("class", "winner");
     return "user win";
   } else if (userChoice === "rock" && comChoice === "paper") {
+    imgComChoice.setAttribute("class", "winner");
+    imgUserChoice.setAttribute("class", "loser");
     return "computer win";
   } else if (userChoice === "rock" && comChoice === "scissors") {
+    imgComChoice.setAttribute("class", "loser");
+    imgUserChoice.setAttribute("class", "winner");
     return "user win";
   } else {
     //console log if I forgot something
     console.log("Error in whoWins function");
+    imgComChoice.setAttribute("class", "draw");
+    imgUserChoice.setAttribute("class", "draw");
     return "draw";
   }
 
@@ -142,15 +172,28 @@ function playARound(userChoice){
 
   playerScore.textContent = userScore;
   computerScore.textContent = comScore;
+  roundsCounter.textContent = rounds + " Of " + numberRounds;
 
   checkRounds(rounds)
 }
 
+//function to begin game
+function beginGame(para) {
+  username = setUsername();
+
+  enterRounds = document.querySelector("#enterRounds");
+  numberRounds = enterRounds.value
+  let startGame = document.querySelector("#startGame");
+  startGame.setAttribute("style", "display:none;")
+  
+  let choose= document.querySelector("#choose");
+  choose.setAttribute("style", "display:flex;")
+}
 
 
 //setup a game
 //get a username
-var username = setUsername();
+var username = "Player";
 //set a start score
 var userScore = 0;
 var  comScore = 0;
@@ -167,9 +210,13 @@ userPaper.addEventListener('click', () => playARound("paper"));
 let userRock = document.querySelector("#rock");
 userRock.addEventListener('click', () => playARound("rock"));
 
+let beginGameBtn = document.querySelector("#begin");
+beginGameBtn.addEventListener('click', () => beginGame());
+
 
 let playerScore = document.querySelector("#playerScore");
 let computerScore = document.querySelector("#comScore");
+let roundsCounter = document.querySelector("#rounds");
 
 let imgUserChoice = document.querySelector("img#userChoice");
 let imgComChoice = document.querySelector("img#comChoice");
